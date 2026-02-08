@@ -89,24 +89,24 @@ function playRound(humanChoice, computerChoice) { //humanChoice & computerChoice
 }
 //PLAY THE ENTIRE GAME (5 ROUNDS)
 function playGame() {
-     let humanSelection = getHumanChoice();
-     let computerSelection = getComputerChoice();
+      humanSelection = getHumanChoice();
+      computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     console.log("Human score:", humanScore, "Computer score:", computerScore);
-     let humanSelection = getHumanChoice();
-     let computerSelection = getComputerChoice();
+      humanSelection = getHumanChoice();
+      computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     console.log("Human score:", humanScore, "Computer score:", computerScore);
-     let humanSelection = getHumanChoice();
-     let computerSelection = getComputerChoice();
+     humanSelection = getHumanChoice();
+     computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     console.log("Human score:", humanScore, "Computer score:", computerScore);
-     let humanSelection = getHumanChoice();
-     let computerSelection = getComputerChoice();
+      humanSelection = getHumanChoice();
+      computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     console.log("Human score:", humanScore, "Computer score:", computerScore);
-     let humanSelection = getHumanChoice();
-     let computerSelection = getComputerChoice();
+      humanSelection = getHumanChoice();
+      computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     console.log("Human score:", humanScore, "Computer score:", computerScore);
 }
