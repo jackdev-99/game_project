@@ -1,10 +1,5 @@
 //COMPUTER CHOICE...............................................
-// function getComputerChoice() {  //function declaration
-    // return Math.floor(Math.random() * 3); 
-// }
-// console.log(getComputerChoice()); //calling inside console.log and the result in console is 0 or 1 or 2
 //we want the functioon to return string values not numbers
-
 function getComputerChoice(){
     let randomNumber = Math.floor(Math.random()*3);
     if (randomNumber === 0) {
@@ -18,17 +13,25 @@ function getComputerChoice(){
         return "scissors";
     }
 }
-// console.log(getComputerChoice()); 
-
- 
 //HUMAN CHOICE.....................................................
-function getHumanChoice() {
-    let answer = prompt("Rock, Paper, Scissors??").toLowerCase();
-    console.log("human entered " + answer);
-    return answer;  //case-insensitive
-}
-//console.log(getHumanChoice()); //delete it, so the prompt message does not appear twice when the function is called.
+/*Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step) */
+let rockBtn= document.querySelector('#rock'); //select the button with id
+rockBtn.addEventListener("click",()=>{
+    console.log("Human entered Rock");
+    playRound("Rock",getComputerChoice());
+});
 
+let paperBtn= document.querySelector('#paper'); //select the button with id
+paperBtn.addEventListener("click",()=>{
+    console.log("Human entered Paper");
+    playRound("Paper",getComputerChoice());
+});
+
+let scissorsBtn= document.querySelector('#scissors'); //select the button with id
+scissorsBtn.addEventListener("click",()=>{
+    console.log("Human entered Scissors");
+    playRound("Scissors",getComputerChoice());
+});
 //THE PLAYERS SCORE................................................
 let humanScore = 0;
 let computerScore = 0; // in the globl scope so scores must be remebered between rounds if they were inside a function they reset every time
@@ -44,70 +47,67 @@ let computerScore = 0; // in the globl scope so scores must be remebered between
 // rock         paper      //computer wins
 // paper        scissors
 
+const resultDiv= document.querySelector("#Result");
+const scoreDiv=document.querySelector("#Score");
+
 function playRound(humanChoice, computerChoice) { //humanChoice & computerChoice already given to me
     humanChoice = humanChoice.toLowerCase();
     if (humanChoice === computerChoice) {
-        console.log("human: " + humanChoice);
-        console.log("computer: " + computerChoice);
-        console.log("same, play again");
-        return;
+        // console.log("human: " + humanChoice);
+        // console.log("computer: " + computerChoice);
+        resultDiv.textContent="same, play again";
+        
     } 
     
-    if (humanChoice === "rock") {
+    else if (humanChoice === "rock") {
         if (computerChoice === "scissors") {
             humanScore++;
-            console.log("you win, rock beats scissors");
+            resultDiv.textContent="you win, rock beats scissors";
         } else {
             computerScore++;
-            console.log("computer wins, paper beats rock");
+            resultDiv.textContent="computer wins, paper beats rock";
         }
-        return;
+        
     }
 
-    if (humanChoice === "paper") {
+    else if (humanChoice === "paper") {
         if (computerChoice === "rock") {
             humanScore++;
-            console.log("you win, paper beats rock");
+            resultDiv.textContent="you win, paper beats rock";
         } else {
             computerScore++;
-            console.log("computer wins, scissors beats paper");
+            resultDiv.textContent="computer wins, scissors beats paper";
         }
-        return;
+        
     }
 
-    if (humanChoice === "scissors") {
+    else if (humanChoice === "scissors") {
         if (computerChoice === "paper") {
             humanScore++;
-            console.log("you win, scissors beats paper");
+            resultDiv.textContent="you win, scissors beats paper";
         } else {
             computerScore++;
-            console.log("computer wins, rock beats scissors");
+            resultDiv.textContent="computer wins, rock beats scissors";
         }
-        return;
+        
     }
+    scoreDiv.textContent="human score is " + humanScore + " | computer score is " + computerScore;
 
+
+    if (humanScore===5){
+    resultDiv.textContent="you win";
+    disableButtons(); //stop the game
+    } else if(computerScore===5){
+    resultDiv.textContent="Computer wins";
+    disableButtons();
+    }
+   
+ 
 }
-//PLAY THE ENTIRE GAME (5 ROUNDS)
-function playGame() {
-      humanSelection = getHumanChoice();
-      computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log("Human score:", humanScore, "Computer score:", computerScore);
-      humanSelection = getHumanChoice();
-      computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log("Human score:", humanScore, "Computer score:", computerScore);
-     humanSelection = getHumanChoice();
-     computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log("Human score:", humanScore, "Computer score:", computerScore);
-      humanSelection = getHumanChoice();
-      computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log("Human score:", humanScore, "Computer score:", computerScore);
-      humanSelection = getHumanChoice();
-      computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log("Human score:", humanScore, "Computer score:", computerScore);
+
+// a new function to stop the game when hitting the button
+function disableButtons() {
+    document.querySelector("#rock").disabled= true; //the button dont work anymore 
+    document.querySelector("#paper").disabled= true;
+    document.querySelector("#scissors").disabled= true;
 }
-playGame();
